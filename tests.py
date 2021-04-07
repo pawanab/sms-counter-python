@@ -53,6 +53,14 @@ class SMSCounterTestCase(TestCase):
         self.assertEqual(counter.get('messages'), 2, 'Message must contains from 2 parts')
 
 
+    def test_utf_message(self):
+        message = '£'
+        counter = SMSCounter.count(message)
+        self.assertEqual(counter.get('encoding'),SMSCounter.UTF16)
+
+    def test_check_message(self):
+        ...
+
 if __name__ == '__main__':
     import unittest
     unittest.main()
